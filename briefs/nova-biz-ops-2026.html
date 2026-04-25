@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova Business Ops — Strategic Brief</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8f9fa; color: #1e1e1e; padding: 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+
+    .header { text-align: center; margin-bottom: 1.5rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header p { color: #868e96; font-size: 0.8rem; }
+
+    .summary-row { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .summary-box { padding: 1rem; border-radius: 12px; flex: 1; min-width: 160px; text-align: center; }
+    .summary-box h3 { font-size: 0.8rem; margin-bottom: 0.25rem; opacity: 0.7; }
+    .summary-box .big { font-size: 1.4rem; font-weight: 700; }
+    .summary-box .sub { font-size: 0.75rem; margin-top: 0.2rem; opacity: 0.6; }
+
+    .purple { background: #f3f0ff; border: 1px solid #d0bfff; }
+    .green { background: #ebfbee; border: 1px solid #b2f2bb; }
+    .teal { background: #e6fcf5; border: 1px solid #c3fae8; }
+    .red { background: #fff5f5; border: 1px solid #ffc9c9; }
+
+    .tier-label { font-weight: 700; margin: 1.2rem 0 0.6rem; display: flex; align-items: center; gap: 0.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; color: white; }
+
+    .card-row { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+    .card { width: 310px; border-radius: 10px; padding: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .card h3 { font-size: 0.95rem; margin-bottom: 0.15rem; }
+    .card .profit { font-size: 0.85rem; font-weight: 600; }
+    .card .sub { font-size: 0.75rem; opacity: 0.7; margin-top: 0.15rem; }
+
+    .tier1 { background: #ebfbee; border: 1px solid #b2f2bb; }
+    .tier2 { background: #fff4e6; border: 1px solid #ffd8a8; }
+    .tier3 { background: #e7f5ff; border: 1px solid #a5d8ff; }
+
+    .divider { border: none; height: 1px; background: #dee2e6; margin: 1.5rem 0; }
+
+    .footer { text-align: center; color: #868e96; font-size: 0.75rem; margin-top: 1.5rem; line-height: 1.6; }
+    .footer a { color: #1971c2; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>Nova Business Operations</h1>
+  <p>Jason's Strategic Brief · April 2026 · Hermes v0.10.0 · deepseek-v4-flash</p>
+</div>
+
+<div class="summary-row">
+  <div class="summary-box purple">
+    <h3>Conservative Monthly Profit</h3>
+    <div class="big">$15,647</div>
+    <div class="sub">$16,800 revenue · 93% margin</div>
+  </div>
+  <div class="summary-box purple">
+    <h3>Realistic 12-Mo Target</h3>
+    <div class="big">$39,000</div>
+    <div class="sub">~$47K revenue · $390K Y1</div>
+  </div>
+  <div class="summary-box green">
+    <h3>True All-In Stack</h3>
+    <div class="big">~$303/mo</div>
+    <div class="sub">vs Naive AI $509-609/mo</div>
+  </div>
+  <div class="summary-box teal">
+    <h3>LLM Cost (all 7)</h3>
+    <div class="big">~$12/mo</div>
+    <div class="sub">deepseek-v4-flash $0.14/M</div>
+  </div>
+  <div class="summary-box red">
+    <h3>Year 1 Estimate</h3>
+    <div class="big">$169K-390K</div>
+    <div class="sub">Conservative → Realistic</div>
+  </div>
+</div>
+
+<div class="tier-label" style="color:#2f9e44;"><span class="badge" style="background:#2f9e44;">WEEK 1</span> TIER 1 — Launch immediately</div>
+<div class="card-row">
+  <div class="card tier1">
+    <h3>n8n Automation Agency</h3>
+    <div class="profit">$3,950/mo · 98.8% margin</div>
+    <div class="sub">2 projects/mo at $2K each. Codex writes workflows. Zero new tools needed. Most ready on this stack.</div>
+  </div>
+  <div class="card tier1">
+    <h3>Appointment Setting Agency</h3>
+    <div class="profit">$4,440/mo · 98.7% margin</div>
+    <div class="sub">3 clients at $1,500/mo. B2B outbound email sequences. Needs Instantly ($37/mo).</div>
+  </div>
+  <div class="card tier1">
+    <h3>Local Business AI Package</h3>
+    <div class="profit">$3,942/mo · 98.6% margin</div>
+    <div class="sub">5 clients at $800/mo. AI receptionist + SEO + ads. Needs ElevenLabs+Twilio ($42/mo).</div>
+  </div>
+</div>
+
+<div class="tier-label" style="color:#e67700;"><span class="badge" style="background:#e67700;">MONTH 1-3</span> TIER 2 — Needs keys + validation</div>
+<div class="card-row">
+  <div class="card tier2">
+    <h3>Crypto Trading Bot</h3>
+    <div class="profit">$120/mo on $5K capital · 3%/mo</div>
+    <div class="sub">Paper trade 30 days minimum. -15% hard stop-loss. CCXT + DeFiLlama + Tavily.</div>
+  </div>
+  <div class="card tier2">
+    <h3>Airbnb Co-Hosting</h3>
+    <div class="profit">$538/mo · 89.7% margin</div>
+    <div class="sub">2 properties at 15% fee. Zero capital. Needs Hospitable+PriceLabs ($62/mo).</div>
+  </div>
+  <div class="card tier2">
+    <h3>Airbnb Operator</h3>
+    <div class="profit">$1,760/mo operational</div>
+    <div class="sub">1 property. Excludes mortgage/rent. Needs property evaluation + Hospitable.</div>
+  </div>
+</div>
+
+<div class="tier-label" style="color:#1971c2;"><span class="badge" style="background:#1971c2;">6-MO RAMP</span> TIER 3 — Slow burn, start now</div>
+<div class="card-row">
+  <div class="card tier3">
+    <h3>Faceless YouTube Empire</h3>
+    <div class="profit">$897/mo at month 6 · 94.4% margin</div>
+    <div class="sub">3 channels in high-CPM niches. Compounds indefinitely. Needs ElevenLabs+FAL+Shotstack+VidIQ ($57/mo). Start as background cron.</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="summary-row">
+  <div class="summary-box green" style="flex:1.5;">
+    <h3>Combined Run Rate (Months 1-3)</h3>
+    <div class="big" style="font-size:1.1rem;">$12,452/mo profit</div>
+    <div class="sub">n8n + Appointment + Local Biz + Crypto (first 3 priority)</div>
+  </div>
+  <div class="summary-box red" style="flex:1;">
+    <h3>Highest Risk</h3>
+    <div class="big" style="font-size:1rem; color:#c92a2a;">🔴 Crypto Capital</div>
+    <div class="sub">Paper trade 30d · -15% stop · Max 5% NW</div>
+  </div>
+  <div class="summary-box teal" style="flex:1;">
+    <h3>8 Tools Replaced by Hermes</h3>
+    <div class="big" style="font-size:1rem;">$0</div>
+    <div class="sub">Prospecting, CRM, research, alerts, scheduling, SEO, content, trading execution</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="footer">
+  <strong>Docs:</strong> <a href="https://github.com/Jason-md-byte/nova-wiki/blob/master/business-ops/biz-ops-operational.md">biz-ops-operational.md</a> · <a href="https://github.com/Jason-md-byte/nova-wiki/blob/master/business-ops/biz-ops-strategic.md">biz-ops-strategic.md</a> on GitHub<br>
+  Local: ~/hermes/scratch/briefs/ · Memory: 10 [biz-ops-2026] entries · Weekly status: Saturday briefing cron<br>
+  Not financial advice · Crypto capital at risk · Airbnb Op excludes property cost
+</div>
+
+</div>
+</body>
+</html>

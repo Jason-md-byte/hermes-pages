@@ -1,0 +1,77 @@
+{
+  "topic": "Python list comprehensions",
+  "cards": [
+    {
+      "front": "What is the primary purpose of a list comprehension in Python?",
+      "back": "To create new lists in a concise and readable way from existing iterables."
+    },
+    {
+      "front": "What is the basic syntax of a list comprehension?",
+      "back": "new_list = [expression for item in iterable]"
+    },
+    {
+      "front": "How do you add a conditional filter to a list comprehension?",
+      "back": "new_list = [expression for item in iterable if condition]"
+    },
+    {
+      "front": "What is the equivalent traditional loop for `[x*2 for x in range(5)]`?",
+      "back": "result = []; for x in range(5): result.append(x*2)"
+    },
+    {
+      "front": "Can you use nested loops in a list comprehension?",
+      "back": "Yes, by adding multiple 'for' clauses: `[expression for item1 in iterable1 for item2 in iterable2]`."
+    },
+    {
+      "front": "What is the output of `[x for x in 'hello' if x in 'aeiou']`?",
+      "back": "['e', 'o']"
+    },
+    {
+      "front": "How does a list comprehension differ from a generator expression?",
+      "back": "List comprehensions create and store the entire list in memory, while generator expressions produce items one by one (on-the-fly) without storing the whole sequence."
+    },
+    {
+      "front": "What is the benefit of using a list comprehension over a traditional for loop for list creation?",
+      "back": "They are generally more concise, often more readable, and can be more performant for creating lists."
+    },
+    {
+      "front": "Can list comprehensions be used to modify an existing list in-place?",
+      "back": "No, list comprehensions always create a new list; they do not modify existing lists in-place."
+    },
+    {
+      "front": "What is the output of `[n**2 for n in [1, 2, 3]]`?",
+      "back": "[1, 4, 9]"
+    },
+    {
+      "front": "How do you include an 'else' clause in a conditional list comprehension?",
+      "back": "The 'if/else' must be placed before the 'for' clause: `[expression_if_true if condition else expression_if_false for item in iterable]`."
+    },
+    {
+      "front": "What does this produce: `[x for x in range(10) if x % 2 == 0]`?",
+      "back": "[0, 2, 4, 6, 8]"
+    },
+    {
+      "front": "When might a traditional for loop be preferred over a list comprehension?",
+      "back": "For complex logic, multiple operations, or when side effects (like printing or modifying external state) are desired within the loop."
+    },
+    {
+      "front": "Can you create a list of tuples using a list comprehension?",
+      "back": "Yes, by making the 'expression' part a tuple: `[(i, i*2) for i in range(3)]`."
+    },
+    {
+      "front": "What is the output of `[str(x) + '!' for x in ['a', 'b']]`?",
+      "back": "['a!', 'b!']"
+    },
+    {
+      "front": "What is the purpose of the 'expression' part in `[expression for item in iterable]`?",
+      "back": "It defines how each 'item' from the 'iterable' is transformed or processed to become an element in the new list."
+    },
+    {
+      "front": "Are list comprehensions considered 'Pythonic'?",
+      "back": "Yes, they are a widely accepted and encouraged Pythonic way to create lists."
+    },
+    {
+      "front": "What is the output of `[y for x in [[1,2],[3,4]] for y in x]`?",
+      "back": "[1, 2, 3, 4]"
+    }
+  ]
+}

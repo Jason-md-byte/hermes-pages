@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova Business Ops — Overview</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8f9fa; color: #1e1e1e; padding: 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+
+    .header { margin-bottom: 2rem; text-align: center; }
+    .header h1 { font-size: 1.6rem; margin-bottom: 0.3rem; }
+    .header p { color: #868e96; font-size: 0.85rem; }
+
+    .tier-label { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.75rem 0; }
+    .tier-1 { color: #2f9e44; }
+    .tier-2 { color: #e67700; }
+    .tier-3 { color: #1971c2; }
+
+    .card-row { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .card { width: 280px; min-height: 140px; border-radius: 12px; padding: 1.2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .card h3 { font-size: 1rem; margin-bottom: 0.25rem; }
+    .card .profit { font-size: 0.85rem; margin-bottom: 0.1rem; }
+    .card .sub { font-size: 0.75rem; opacity: 0.7; }
+
+    .green-card { background: #ebfbee; border: 1px solid #b2f2bb; }
+    .orange-card { background: #fff4e6; border: 1px solid #ffd8a8; }
+    .blue-card { background: #e7f5ff; border: 1px solid #a5d8ff; }
+    .purple-card { background: #f3f0ff; border: 1px solid #d0bfff; }
+    .red-card { background: #fff5f5; border: 1px solid #ffc9c9; }
+    .teal-card { background: #e6fcf5; border: 1px solid #c3fae8; }
+
+    .summary-bar { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .summary-bar .card { flex: 1; min-width: 200px; }
+
+    .divider { border: none; height: 1px; background: #dee2e6; margin: 1.5rem 0; }
+
+    .footer-list { text-align: center; color: #868e96; font-size: 0.8rem; margin-top: 1.5rem; line-height: 1.6; }
+    .footer-list strong { color: #495057; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>Nova Business Operations</h1>
+    <p>Claude Chat research · April 24 2026 · Exploratory/unverified · Prepared for Hermes Agent (Nova)</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="tier-label tier-1">TIER 1 — Launch Month 1 (immediate cash)</div>
+  <div class="card-row">
+    <div class="card green-card">
+      <h3>n8n Automation Agency</h3>
+      <div class="profit"><strong>$3,950/mo</strong> profit · 98.8% margin</div>
+      <div class="sub">Build and sell custom workflow automations. Codex writes them, you sell the output.</div>
+      <div class="sub" style="margin-top:0.4rem;">✅ Hermes + Codex · ✅ n8n ready</div>
+    </div>
+    <div class="card green-card">
+      <h3>Appointment Setting Agency</h3>
+      <div class="profit"><strong>$4,440/mo</strong> profit · 98.7% margin</div>
+      <div class="sub">B2B outbound email sequences. Hermes runs the full loop.</div>
+      <div class="sub" style="margin-top:0.4rem;">🔲 Needs Instantly ($37/mo)</div>
+    </div>
+    <div class="card green-card">
+      <h3>Local Business AI Package</h3>
+      <div class="profit"><strong>$3,942/mo</strong> profit · 98.6% margin</div>
+      <div class="sub">AI receptionist + local SEO + ad monitoring. $800-1,200/mo retainer.</div>
+      <div class="sub" style="margin-top:0.4rem;">🔲 Needs ElevenLabs + Twilio</div>
+    </div>
+  </div>
+
+  <div class="tier-label tier-2">TIER 2 — Launch Month 2-3 (needs keys)</div>
+  <div class="card-row">
+    <div class="card orange-card">
+      <h3>Crypto Trading Bot</h3>
+      <div class="profit"><strong>$120/mo</strong> on $5K capital · 3%/mo</div>
+      <div class="sub">CCXT + DeFiLlama. Momentum/mean-reversion strategies.</div>
+      <div class="sub" style="margin-top:0.4rem;">⚠️ <strong>Paper trade 30 days minimum</strong></div>
+    </div>
+    <div class="card orange-card">
+      <h3>Airbnb Co-Hosting</h3>
+      <div class="profit"><strong>$538/mo</strong> profit · 89.7% margin</div>
+      <div class="sub">Manage other owners' listings for 15-18% revenue cut. Zero capital at risk.</div>
+      <div class="sub" style="margin-top:0.4rem;">🔲 Needs Hospitable.com</div>
+    </div>
+    <div class="card orange-card">
+      <h3>Airbnb Operator</h3>
+      <div class="profit"><strong>$1,760/mo</strong> operational profit</div>
+      <div class="sub">Own property. AI guest communications + dynamic pricing.</div>
+      <div class="sub" style="margin-top:0.4rem;">❌ Property cost not modelled · 🔲 Hospitable</div>
+    </div>
+  </div>
+
+  <div class="tier-label tier-3">TIER 3 — Slow burn, start now (6-month ramp)</div>
+  <div class="card-row">
+    <div class="card blue-card">
+      <h3>Faceless YouTube Empire</h3>
+      <div class="profit"><strong>$897/mo</strong> profit at month 6 · 94.4% margin</div>
+      <div class="sub">3-5 channels in high-CPM niches. AdSense + affiliates. Compounds indefinitely.</div>
+      <div class="sub" style="margin-top:0.4rem;">🔲 Needs FAL_KEY + ElevenLabs</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="tier-label" style="color:#6741d9; margin-bottom:0;">ALL 7 COMBINED</div>
+  <div class="summary-bar">
+    <div class="card purple-card">
+      <h3>Conservative</h3>
+      <div class="profit"><strong>$15,647/mo</strong> profit</div>
+      <div class="sub">$16,800/mo revenue · 93.1% margin</div>
+      <div class="sub" style="margin-top:0.4rem;">Year 1 estimate: <strong>~$169K</strong></div>
+    </div>
+    <div class="card purple-card">
+      <h3>Realistic (Mo 7-12)</h3>
+      <div class="profit"><strong>~$66,000/mo</strong> profit</div>
+      <div class="sub">~$76,800/mo revenue · scalable</div>
+      <div class="sub" style="margin-top:0.4rem;">Year 1 estimate: <strong>~$250-320K</strong></div>
+    </div>
+    <div class="card red-card">
+      <h3>Keys Still Needed</h3>
+      <div class="profit" style="color:#c92a2a; font-size:0.8rem;">
+        1. ElevenLabs API key<br>
+        2. FAL_KEY<br>
+        3. Twilio account<br>
+        4. Hospitable.com<br>
+        5. Exchange API keys
+      </div>
+    </div>
+    <div class="card teal-card">
+      <h3>Stack Cost (all 7 running)</h3>
+      <div class="profit"><strong>~$303/mo</strong> total tools</div>
+      <div class="sub">~$12/mo LLM (deepseek-v4-flash)</div>
+      <div class="sub" style="margin-top:0.4rem;">vs Naive AI: <strong>$509-609/mo</strong></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="footer-list">
+    <strong>Priority order:</strong> n8n Agency → Appointment Setting → Local Biz → Crypto Bot → Airbnb Co-Host → Airbnb Operator → YouTube Empire<br>
+    Full analysis: <code>~/hermes/scratch/business-ops/business-ops-full-analysis.md</code><br>
+    Executive brief: <code>~/hermes/scratch/business-ops/business-ops-executive-brief.md</code>
+  </div>
+
+</div>
+</body>
+</html>

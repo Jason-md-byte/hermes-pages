@@ -21,14 +21,10 @@ layout: default
   .tag-blue { background: #1f6feb33; color: #58a6ff; border: 1px solid #1f6feb66; }
   .tag-green { background: #23863633; color: #3fb950; border: 1px solid #23863666; }
   .tag-purple { background: #8957e533; color: #a371f7; border: 1px solid #8957e566; }
-  .tag-orange { background: #d2992233; color: #d29922; border: 1px solid #d2992266; }
   .hero { text-align: center; padding: 48px 0 32px; }
   .hero h1 { border: none; font-size: 32px; }
   .hero p { color: #8b949e; font-size: 16px; max-width: 500px; margin: 0 auto; }
   .section-title { margin-top: 40px; margin-bottom: 12px; }
-  .feed { margin-top: 24px; padding: 0; list-style: none; }
-  .feed li { padding: 6px 0; border-bottom: 1px solid #21262d; font-size: 14px; }
-  .feed time { color: #8b949e; margin-right: 8px; }
 </style>
 
 <div class="hero">
@@ -43,44 +39,33 @@ layout: default
 
 ## 📁 Directories
 
-{% assign dirs = site.static_files | where_exp: "file", "file.path contains '/briefs/' or file.path contains '/business-ops/'" | group_by_exp: "file", "file.path | split: '/' | slice: 0, 3 | join: '/'" %}
-{% for dir in dirs %}
-  {% assign parts = dir.name | split: '/' %}
-  {% if parts.size == 3 and parts[2] != "" %}
-    {% assign dir_name = parts[2] %}
-    {% assign dir_path = dir.name | append: '/' %}
-    {% assign file_count = dir.items | size %}
-    <div class="file-item">
-      <span class="file-icon">📂</span>
-      <span class="file-name"><a href="{{ site.baseurl }}/{{ dir_path | relative_url }}">{{ dir_name | capitalize | replace: "-", " " }}</a></span>
-      <span class="file-meta">{{ file_count }} files</span>
-    </div>
-  {% endif %}
-{% endfor %}
+<div class="file-item"><span class="file-icon">📂</span><span class="file-name"><a href=".git/hooks/">.git/hooks</a></span><span class="file-meta">14 files</span></div>
+<div class="file-item"><span class="file-icon">📂</span><span class="file-name"><a href=".git/info/">.git/info</a></span><span class="file-meta">1 files</span></div>
+<div class="file-item"><span class="file-icon">📂</span><span class="file-name"><a href=".git/logs/">.git/logs</a></span><span class="file-meta">1 files</span></div>
+<div class="file-item"><span class="file-icon">📂</span><span class="file-name"><a href="briefs/">briefs</a></span><span class="file-meta">3 files</span></div>
+<div class="file-item"><span class="file-icon">📂</span><span class="file-name"><a href="business-ops/">business ops</a></span><span class="file-meta">4 files</span></div>
+<div class="file-item"><span class="file-icon">📂</span><span class="file-name"><a href="flashcards/python-list-comprehensions/">flashcards/python list comprehensions</a></span><span class="file-meta">1 files</span></div>
 
 ## 📄 Recent Files
 
 <div class="file-grid">
-{% assign sorted = site.static_files | sort: "modified_time" | reverse %}
-{% for file in sorted limit: 20 %}
-  {% assign ext = file.path | split: '.' | last | downcase %}
-  {% if ext == "html" or ext == "md" or ext == "excalidraw" or ext == "json" %}
-    {% if file.path contains "hermes-output" %}
-      <div class="file-item">
-        <span class="file-icon">
-          {% if ext == "html" %}🌐{% elsif ext == "md" %}📝{% elsif ext == "excalidraw" %}🎨{% else %}📄{% endif %}
-        </span>
-        <span class="file-name"><a href="{{ site.baseurl }}{{ file.path | relative_url }}">{{ file.name | replace: "-", " " | replace: ".md", "" | replace: ".html", "" }}</a></span>
-        <span class="file-meta">.{{ ext }}</span>
-      </div>
-    {% endif %}
-  {% endif %}
-{% endfor %}
+
+<div class="file-item"><span class="file-icon">📝</span><span class="file-name"><a href="README.md">README</a></span><span class="file-meta">.md</span></div>
+<div class="file-item"><span class="file-icon">🌐</span><span class="file-name"><a href="briefs/nova-biz-ops-2026.html">nova biz ops 2026</a></span><span class="file-meta">.html</span></div>
+<div class="file-item"><span class="file-icon">📝</span><span class="file-name"><a href="briefs/biz-ops-strategic.md">biz ops strategic</a></span><span class="file-meta">.md</span></div>
+<div class="file-item"><span class="file-icon">📝</span><span class="file-name"><a href="briefs/biz-ops-operational.md">biz ops operational</a></span><span class="file-meta">.md</span></div>
+<div class="file-item"><span class="file-icon">🌐</span><span class="file-name"><a href="business-ops/nova-business-ops.html">nova business ops</a></span><span class="file-meta">.html</span></div>
+<div class="file-item"><span class="file-icon">🎨</span><span class="file-name"><a href="business-ops/nova-business-ops-diagram.excalidraw">nova business ops diagram</a></span><span class="file-meta">.excalidraw</span></div>
+<div class="file-item"><span class="file-icon">📝</span><span class="file-name"><a href="business-ops/business-ops-full-analysis.md">business ops full analysis</a></span><span class="file-meta">.md</span></div>
+<div class="file-item"><span class="file-icon">📝</span><span class="file-name"><a href="business-ops/business-ops-executive-brief.md">business ops executive brief</a></span><span class="file-meta">.md</span></div>
+<div class="file-item"><span class="file-icon">📝</span><span class="file-name"><a href="hermes_setup_report_claude.md">hermes_setup_report_claude</a></span><span class="file-meta">.md</span></div>
+<div class="file-item"><span class="file-icon">📝</span><span class="file-name"><a href="hermes_research_2026-04-23.md">hermes_research_2026 04 23</a></span><span class="file-meta">.md</span></div>
+<div class="file-item"><span class="file-icon">📊</span><span class="file-name"><a href="flashcards/python-list-comprehensions/cards.json">cards</a></span><span class="file-meta">.json</span></div>
 </div>
 
 ---
 
 <p style="text-align: center; color: #8b949e; font-size: 12px; margin-top: 48px;">
-  Last synced: {{ site.time | date: "%Y-%m-%d %H:%M UTC" }} · 
+  Last synced: 2026-04-25 04:05 UTC ·
   <a href="https://github.com/Jason-md-byte/hermes-pages">Source repo</a>
 </p>

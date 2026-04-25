@@ -16,7 +16,7 @@
     .hero { text-align: center; padding: 48px 0 40px; }
     .hero h2 { font-size: 28px; font-weight: 700; color: #f0f6fc; margin-bottom: 8px; }
     .hero p { color: #8b949e; font-size: 15px; }
-    .tags { margin-top: 16px; display: flex; justify-content: center; gap: 8px; }
+    .tags { margin-top: 16px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
     .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500; }
     .tag-blue { background: #1f6feb33; color: #58a6ff; border: 1px solid #1f6feb66; }
     .tag-green { background: #23863633; color: #3fb950; border: 1px solid #23863666; }
@@ -34,8 +34,7 @@
     .footer { text-align: center; padding: 48px 24px; color: #484f58; font-size: 12px; }
     .footer a { color: #8b949e; }
     .footer a:hover { color: #58a6ff; }
-    .loading { color: #8b949e; font-size: 13px; text-align: center; padding: 24px; }
-    .error-box { background: #3d1111; border: 1px solid #660000; border-radius: 6px; padding: 16px; color: #f85149; font-size: 13px; text-align: center; }
+    .last-synced { text-align: center; padding: 16px; color: #8b949e; font-size: 12px; }
   </style>
 </head>
 <body>
@@ -53,53 +52,31 @@
         <span class="tag tag-purple">dark-mode</span>
       </div>
     </div>
-    <div id="app"><div class="loading">Loading file listing...</div></div>
+
+    <div class="section">
+      <h3>📁 Directories</h3>
+      <div class="file-list">
+        <a class="file-item" href="https://github.com/Jason-md-byte/hermes-pages/tree/main/briefs"><span class="icon">📂</span><span class="name">briefs</span><span class="meta">3 files</span></a>
+        <a class="file-item" href="https://github.com/Jason-md-byte/hermes-pages/tree/main/business-ops"><span class="icon">📂</span><span class="name">business-ops</span><span class="meta">4 files</span></a>
+        <a class="file-item" href="https://github.com/Jason-md-byte/hermes-pages/tree/main/flashcards"><span class="icon">📂</span><span class="name">flashcards</span><span class="meta">1 file</span></a>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📄 Files</h3>
+      <div class="file-list">
+        <a class="file-item" href="hermes_research_2026-04-23.md"><span class="icon">📝</span><span class="name">hermes research 2026 04 23</span><span class="meta">.md</span></a>
+        <a class="file-item" href="hermes_setup_report_claude.md"><span class="icon">📝</span><span class="name">hermes setup report claude</span><span class="meta">.md</span></a>
+        <a class="file-item" href="README.md"><span class="icon">📝</span><span class="name">README</span><span class="meta">.md</span></a>
+      </div>
+    </div>
+
+    <div class="last-synced">Last synced: 2026-04-25 17:42 UTC</div>
   </div>
   <div class="footer">
     Powered by Hermes Agent &middot;
     <a href="https://github.com/Jason-md-byte/hermes-pages">Source</a> &middot;
     Daily auto-sync
   </div>
-  <script>
-  (async function() {
-    const app = document.getElementById('app');
-    try {
-      const res = await fetch('https://api.github.com/repos/Jason-md-byte/hermes-pages/contents/');
-      const items = await res.json();
-      if (!Array.isArray(items)) throw new Error('Unexpected response');
-      const valid = items.filter(i => i.name !== '.git' && !i.name.startsWith('.'));
-      const dirs = valid.filter(i => i.type === 'dir');
-      const files = valid.filter(i => i.type === 'file' && i.name !== 'index.html');
-      let html = '';
-      if (dirs.length) {
-        html += '<div class="section"><h3>📁 Directories</h3><div class="file-list">';
-        dirs.forEach(d => {
-          const cleanName = d.name.replace(/-/g, ' ').replace(/\/g, '');
-          html += '<a class="file-item" href="' + d.html_url + '"><span class="icon">📂</span><span class="name">' + cleanName + '</span><span class="meta">dir</span></a>';
-        });
-        html += '</div></div>';
-      }
-      if (files.length) {
-        html += '<div class="section"><h3>📄 Files</h3><div class="file-list">';
-        files.forEach(f => {
-          const ext = f.name.split('.').pop().toLowerCase();
-          let icon = '📄';
-          if (ext === 'html') icon = '🌐';
-          else if (ext === 'md' || ext === 'markdown') icon = '📝';
-          else if (ext === 'json') icon = '📊';
-          else if (ext === 'excalidraw') icon = '🎨';
-          const name = f.name.replace(/\.(md|html|json|excalidraw)$/, '').replace(/-/g, ' ');
-          const link = 'https://jason-md-byte.github.io/hermes-pages/' + f.name;
-          html += '<a class="file-item" href="' + link + '"><span class="icon">' + icon + '</span><span class="name">' + name + '</span><span class="meta">.' + ext + '</span></a>';
-        });
-        html += '</div></div>';
-      }
-      if (!dirs.length && !files.length) html += '<div class="error-box">No files found.</div>';
-      app.innerHTML = html;
-    } catch (err) {
-      app.innerHTML = '<div class="error-box">⚠ ' + err.message + '</div>';
-    }
-  })();
-  </script>
 </body>
 </html>

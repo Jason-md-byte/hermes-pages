@@ -1,1 +1,3 @@
-_layouts
+.git
+*.md
+!README.md

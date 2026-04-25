@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hermes Output</title>
+  <meta name="color-scheme" content="dark">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d1117;
+      color: #e6edf3;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .header {
+      background: #161b22;
+      border-bottom: 1px solid #21262d;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #f0f6fc;
+      margin: 0;
+    }
+    .header a {
+      color: #8b949e;
+      font-size: 13px;
+      text-decoration: none;
+    }
+    .header a:hover { color: #58a6ff; }
+
+    /* Main container */
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 48px 0 40px;
+    }
+    .hero h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #f0f6fc;
+      margin-bottom: 8px;
+    }
+    .hero p {
+      color: #8b949e;
+      font-size: 15px;
+    }
+    .tags {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .tag-blue {
+      background: #1f6feb33;
+      color: #58a6ff;
+      border: 1px solid #1f6feb66;
+    }
+    .tag-green {
+      background: #23863633;
+      color: #3fb950;
+      border: 1px solid #23863666;
+    }
+    .tag-purple {
+      background: #8957e533;
+      color: #a371f7;
+      border: 1px solid #8957e566;
+    }
+
+    /* Section heading */
+    .section {
+      margin-top: 40px;
+    }
+    .section h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #f0f6fc;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #21262d;
+    }
+
+    /* File items */
+    .file-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .file-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      transition: background 0.15s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .file-item:hover {
+      background: #1c2128;
+    }
+    .file-item .icon {
+      font-size: 18px;
+      min-width: 24px;
+      text-align: center;
+      line-height: 1;
+    }
+    .file-item .name {
+      flex: 1;
+      font-size: 14px;
+      color: #e6edf3;
+    }
+    .file-item .meta {
+      color: #8b949e;
+      font-size: 12px;
+    }
+    a.file-item .name {
+      color: #58a6ff;
+    }
+    a.file-item:hover .name {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 48px 24px;
+      color: #484f58;
+      font-size: 12px;
+    }
+    .footer a { color: #8b949e; text-decoration: none; }
+    .footer a:hover { color: #58a6ff; }
+
+    /* Loading state */
+    .loading {
+      color: #8b949e;
+      font-size: 13px;
+      text-align: center;
+      padding: 24px;
+    }
+    .loading .dots::after {
+      content: '';
+      animation: dots 1.5s infinite;
+    }
+    @keyframes dots {
+      0%   { content: ''; }
+      33%  { content: '.'; }
+      66%  { content: '..'; }
+      100% { content: '...'; }
+    }
+
+    /* Error state */
+    .error-box {
+      background: #3d1111;
+      border: 1px solid #660000;
+      border-radius: 6px;
+      padding: 16px;
+      color: #f85149;
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>⎇ Hermes Output</h1>
+    <a href="https://github.com/Jason-md-byte/hermes-pages">GitHub</a>
+  </div>
+
+  <div class="main">
+    <div class="hero">
+      <h2>⎇ Hermes Output</h2>
+      <p>Daily sync of generated dashboards, briefs, and visual reports</p>
+      <div class="tags">
+        <span class="tag tag-blue">auto-sync</span>
+        <span class="tag tag-green">daily</span>
+        <span class="tag tag-purple">dark-mode</span>
+      </div>
+    </div>
+
+    <div id="app">
+      <div class="loading">Loading <span class="dots"></span></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Powered by <a href="">Hermes Agent</a> ·
+    <a href="https://github.com/Jason-md-byte/hermes-pages">Source</a> ·
+    Daily auto-sync
+  </div>
+
+  <script>
+  // Fetch directory listing from GitHub API
+  (async function() {
+    const app = document.getElementById('app');
+    try {
+      const res = await fetch('https://api.github.com/repos/Jason-md-byte/hermes-pages/contents/');
+      const items = await res.json();
+
+      if (!Array.isArray(items)) {
+        throw new Error('Unexpected response');
+      }
+
+      // Filter out .git
+      const valid = items.filter(i => i.name !== '.git' && !i.name.startsWith('.git'));
+
+      const dirs = valid.filter(i => i.type === 'dir');
+      const files = valid.filter(i => i.type === 'file' && i.name !== 'index.html' && i.name !== 'index.md');
+
+      let html = '';
+
+      // Directories
+      if (dirs.length) {
+        html += `<div class="section"><h3>📁 Directories</h3><div class="file-list">`;
+        dirs.forEach(d => {
+          const cleanName = d.name.replace(/-/g, ' ').replace(/\//g, '');
+          html += `<a class="file-item" href="${d.html_url}">
+            <span class="icon">📂</span>
+            <span class="name">${cleanName}</span>
+            <span class="meta">dir</span>
+          </a>`;
+        });
+        html += `</div></div>`;
+      }
+
+      // Files
+      if (files.length) {
+        html += `<div class="section"><h3>📄 Files</h3><div class="file-list">`;
+        files.forEach(f => {
+          const ext = f.name.split('.').pop().toLowerCase();
+          let icon = '📄';
+          if (ext === 'html') icon = '🌐';
+          else if (ext === 'md' || ext === 'markdown') icon = '📝';
+          else if (ext === 'json') icon = '📊';
+          else if (ext === 'excalidraw') icon = '🎨';
+          else if (ext === 'png' || ext === 'jpg' || ext === 'webp') icon = '🖼️';
+
+          const name = f.name.replace(/\.(md|html|json|excalidraw)$/, '')
+                             .replace(/-/g, ' ');
+
+          // Direct link to raw file on pages
+          const base = 'https://jason-md-byte.github.io/hermes-pages/';
+
+          html += `<a class="file-item" href="${f.html_url}?raw=true">
+            <span class="icon">${icon}</span>
+            <span class="name">${name}</span>
+            <span class="meta">.${ext}</span>
+          </a>`;
+        });
+        html += `</div></div>`;
+      }
+
+      if (!dirs.length && !files.length) {
+        html += `<div class="error-box">No files found in repository root.</div>`;
+      }
+
+      app.innerHTML = html;
+
+    } catch (err) {
+      app.innerHTML = `<div class="error-box">⚠ Could not load file listing: ${err.message}</div>`;
+    }
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+# =============================================================================
+# LinkedIn ICP-Matched Lead Scraper — Configuration
+# =============================================================================
+# Edit this file to define your Ideal Customer Profile (ICP) search parameters.
+# All values support comma-separated lists for multiple targets.
+
+app:
+  name: "linkedin-icp-scraper"
+  version: "1.0.0"
+  log_level: "INFO"  # DEBUG | INFO | WARNING | ERROR
+
+# =============================================================================
+# TARGET ICP CRITERIA
+# =============================================================================
+target:
+  titles:
+    - "Operations Manager"
+    - "CEO"
+    - "Founder"
+    - "COO"
+    - "General Manager"
+    - "Owner"
+    - "President"
+    - "Director of Operations"
+
+  locations:
+    - "Toronto, Ontario, Canada"
+    - "Greater Toronto Area, Canada"
+    - "Mississauga, Ontario, Canada"
+    - "Brampton, Ontario, Canada"
+    - "Scarborough, Ontario, Canada"
+    - "Markham, Ontario, Canada"
+    - "Vaughan, Ontario, Canada"
+
+  industries:
+    - "Construction"
+    - "Real Estate"
+    - "Dental"
+    - "HVAC"
+    - "Property Management"
+    - "Home Services"
+    - "Architecture & Planning"
+
+  company_size:  # LinkedIn Sales Navigator size buckets
+    - "11-50"
+    - "51-200"
+    - "201-500"
+    - "501-1000"
+
+# =============================================================================
+# SEARCH PARAMETERS
+# =============================================================================
+search:
+  # Sales Navigator URL template (preferred — richer filters)
+  sales_navigator_base: "https://www.linkedin.com/sales/search/people"
+
+  # Free LinkedIn search (fallback)
+  linkedin_search_base: "https://www.linkedin.com/search/results/people"
+
+  # Keywords appended to searches (AND logic within each group)
+  keyword_groups:
+    - - "operations"
+      - "manager"
+    - - "ceo"
+      - "construction"
+    - - "founder"
+      - "real estate"
+    - - "owner"
+      - "hvac"
+
+  # Max result pages to scrape per query combination
+  max_pages: 5
+
+  # Results per page (LinkedIn allows 10 or 25; 25 is recommended)
+  results_per_page: 25
+
+  # Sort order
+  sort: "relevance"  # relevance | recent
+
+  # Connection filter (free LinkedIn only)
+  connection_filter: null  # null | F (1st) | S (2nd) | O (3rd+)
+
+# =============================================================================
+# BROWSER CONFIGURATION
+# =============================================================================
+browser:
+  mode: "local"  # "local" | "browserbase"
+
+  # Local Playwright settings
+  local:
+    headless: true
+    viewport:
+      width: 1920
+      height: 1080
+    user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    locale: "en-CA"
+    timezone: "America/Toronto"
+
+  # Browserbase cloud session settings
+  browserbase:
+    api_key_env: "BROWSERBASE_API_KEY"
+    project_id_env: "BROWSERBASE_PROJECT_ID"
+    region: "us-east-1"
+    proxy: "fingerprint-resistant"
+    session_ttl_seconds: 300
+    activity_ttl_seconds: 60
+
+# =============================================================================
+# TIMING & RATE LIMITING
+# =============================================================================
+timing:
+  # Random delay between actions (seconds)
+  delay_min: 3
+  delay_max: 7
+
+  # Delay between profile visits (more conservative)
+  profile_delay_min: 5
+  profile_delay_max: 10
+
+  # Page load timeout (seconds)
+  page_load_timeout: 30
+
+  # Max profiles to visit per session before rotating
+  max_profiles_per_session: 150
+
+  # Cooldown between sessions (minutes)
+  session_cooldown_minutes: 15
+
+# =============================================================================
+# SESSION & CREDENTIALS
+# =============================================================================
+session:
+  # Session cookie cache file path
+  cookie_cache: "data/session_cookies.json"
+
+  # Login prompt on missing session
+  login_on_start: true
+
+  # LinkedIn credentials (leave empty for interactive prompt)
+  credentials:
+    email_env: "LINKEDIN_EMAIL"
+    password_env: "LINKEDIN_PASSWORD"
+
+# =============================================================================
+# OUTPUT SETTINGS
+# =============================================================================
+output:
+  # Output directory
+  directory: "output"
+
+  # File formats: "jsonl", "csv", or "both"
+  formats:
+    - "jsonl"
+    - "csv"
+
+  # File naming
+  filename_prefix: "leads"
+  include_timestamp: true
+
+  # Enrichment — visit each profile page for company_size and headline
+  enrich_profiles: true
+
+  # Deduplication field
+  dedup_field: "profile_url"
+
+# =============================================================================
+# FILTERS (POST-EXTRACTION)
+# =============================================================================
+filters:
+  # Only keep records where title matches a regex in this list
+  title_regex:
+    - "^operations manager"
+    - "^ceo"
+    - "^founder"
+    - "^coo"
+    - "^general manager"
+    - "^owner"
+    - "^director of operations"
+    - "^president"
+
+  # Only keep records where location contains one of these strings
+  location_contains:
+    - "Toronto"
+    - "GTA"
+    - "Mississauga"
+    - "Brampton"
+    - "Markham"
+    - "Vaughan"
+    - "Ontario"
+
+  # Exclude profiles matching these title patterns
+  title_exclude:
+    - "intern"
+    - "volunteer"
+    - "assistant"

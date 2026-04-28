@@ -1,0 +1,115 @@
+{
+  "name": "Invoice to Notify",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "path": "invoice-notify",
+        "options": {}
+      },
+      "webhookId": "invoice-notify"
+    },
+    {
+      "id": "2",
+      "name": "Format Email Body",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [450, 300],
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "emailSubject",
+              "value": "=New Invoice: {{ $json.invoiceNumber || 'N/A' }}"
+            },
+            {
+              "name": "emailBody",
+              "value": "=Dear {{ $json.clientName || 'Client' }},\n\nA new invoice has been generated.\n\nInvoice #: {{ $json.invoiceNumber }}\nAmount: {{ $json.amount }} {{ $json.currency || 'USD' }}\nDue Date: {{ $json.dueDate }}\nStatus: {{ $json.status || 'pending' }}\n\nItems:\n{{ $json.items ? $json.items.map(function(item) { return '- ' + item.description + ': ' + item.quantity + ' x ' + item.unitPrice + ' = ' + item.total; }).join('\\n') : 'N/A' }}\n\nTotal: {{ $json.amount }} {{ $json.currency || 'USD' }}\n\nPlease process payment by the due date.\n\nThank you,\nBilling Department"
+            },
+            {
+              "name": "recipientEmail",
+              "value": "={{ $json.clientEmail }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "3",
+      "name": "Send Email via SMTP",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [650, 300],
+      "parameters": {
+        "fromEmail": "={{ $vars.smtpFromEmail }}",
+        "toEmail": "={{ $json.recipientEmail }}",
+        "subject": "={{ $json.emailSubject }}",
+        "text": "={{ $json.emailBody }}",
+        "options": {}
+      },
+      "credentials": {
+        "smtp": {
+          "id": "{{ $vars.smtpCredentialId }}",
+          "name": "SMTP Credentials"
+        }
+      }
+    },
+    {
+      "id": "4",
+      "name": "Log Invoice to File",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [850, 300],
+      "parameters": {
+        "functionCode": "// Log invoice details to a file\nconst fs = require('fs');\nconst path = '/home/hermes/hermes/scratch/briefs/biz-ops-outputs/n8n-demos/invoice-log.txt';\n\nconst invoice = items[0].json;\nconst logEntry = {\n  timestamp: new Date().toISOString(),\n  invoiceNumber: invoice.invoiceNumber || 'N/A',\n  clientName: invoice.clientName || 'N/A',\n  clientEmail: invoice.clientEmail || 'N/A',\n  amount: invoice.amount || 0,\n  currency: invoice.currency || 'USD',\n  dueDate: invoice.dueDate || 'N/A',\n  status: invoice.status || 'pending',\n  emailSent: true\n};\n\nlet logLine = JSON.stringify(logEntry) + '\\n';\n\ntry {\n  fs.appendFileSync(path, logLine, 'utf8');\n  console.log('Invoice logged to: ' + path);\n} catch (err) {\n  console.error('Failed to log invoice:', err.message);\n}\n\nreturn items;"
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Format Email Body",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Email Body": {
+      "main": [
+        [
+          {
+            "node": "Send Email via SMTP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email via SMTP": {
+      "main": [
+        [
+          {
+            "node": "Log Invoice to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "versionId": "invoice-notify-v1",
+  "active": false
+}

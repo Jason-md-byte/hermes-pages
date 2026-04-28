@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LinkedIn ICP Lead Record",
+  "description": "Schema for a single prospect record extracted by the LinkedIn ICP-Matched Lead Scraper.",
+  "type": "object",
+  "required": [
+    "name",
+    "title",
+    "company",
+    "location",
+    "profile_url"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Prospect's full name as displayed on LinkedIn.",
+      "examples": ["Jane Smith", "Michael Chen"],
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "description": "Prospect's current job title from their LinkedIn profile headline.",
+      "examples": ["CEO at BuildCorp Inc.", "Operations Manager at DentalWorks"],
+      "minLength": 1
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name where the prospect currently works.",
+      "examples": ["BuildCorp Inc.", "Maple Dental Group"],
+      "minLength": 1
+    },
+    "location": {
+      "type": "string",
+      "description": "Geographic location as listed on the prospect's LinkedIn profile.",
+      "examples": ["Toronto, Ontario, Canada", "Mississauga, ON"],
+      "minLength": 1
+    },
+    "profile_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Full URL to the prospect's LinkedIn profile.",
+      "examples": [
+        "https://www.linkedin.com/in/jane-smith-abc123/",
+        "https://www.linkedin.com/in/michael-chen-xyz456/"
+      ],
+      "pattern": "^https://(www\\.)?linkedin\\.com/in/.+"
+    },
+    "company_size": {
+      "type": "string",
+      "description": "Approximate employee count range for the company, if available.",
+      "examples": ["11-50 employees", "51-200 employees", "201-500 employees"],
+      "default": null
+    }
+  },
+  "additionalProperties": false
+}
